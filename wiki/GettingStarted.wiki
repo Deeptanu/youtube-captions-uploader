@@ -1,0 +1,5 @@
+=Getting Started with the !YouTube Captions Uploader Code=
+
+If you'd like to use the !YouTube Captions Uploader without having to deploy your own App Engine instance, a public example is running at http://yt-captions-uploader.appspot.com/
+
+If you're a developer who wants to run your own instance, perhaps with code modifications, then continue reading!
