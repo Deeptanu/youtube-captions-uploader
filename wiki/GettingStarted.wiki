@@ -3,3 +3,17 @@
 If you'd like to use the !YouTube Captions Uploader without having to deploy your own App Engine instance, a public example is running at http://yt-captions-uploader.appspot.com/
 
 If you're a developer who wants to run your own instance, perhaps with code modifications, then continue reading!
+
+==Checking Out the Code==
+
+The code is available in this Google Code project, released under the Apache 2.0 license. Checkout instructions can be found at http://code.google.com/p/youtube-captions-uploader/source/checkout
+
+The SVN repository contains metadata for an Eclipse project, so if you check out directly into Eclipse (using [http://subclipse.tigris.org/ Subclipse], for example) you should get a fully configured App Engine Eclipse project.
+
+==Filling in the Blanks==
+
+There are a couple of `REPLACE ME!` placeholders in the code.
+
+[http://code.google.com/p/youtube-captions-uploader/source/browse/trunk/yt-caption-uploader/war/WEB-INF/appengine-web.xml?r=5#3 One] is in the `war/WEB-INF/appengine-web.xml` file; you need to fill in the name of your registered App Engine instance prior to App Engine deployment.
+
+The [http://code.google.com/p/youtube-captions-uploader/source/browse/trunk/yt-caption-uploader/src/com/google/youtube/captions/Util.java?r=5#29 other] is in the `src/com/google/youtube/captions/Util.java` file.
