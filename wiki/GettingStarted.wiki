@@ -34,4 +34,4 @@ Once those two changes are made, you're ready to deploy to App Engine.
 
 After deployment, you should be able to access your instance.
 
-An optional final step is to verify ownership of the site with Google, which will lead to a less-dire warning message when users login to their YouTube accounts via AuthSub. [http://code.google.com/apis/accounts/docs/RegistrationForWebAppsAuto.html This document] describes the registration process.
+An optional final step is to verify ownership of the site with Google, which will lead to a less-dire warning message when users login to their !YouTube accounts via !AuthSub. [http://code.google.com/apis/accounts/docs/RegistrationForWebAppsAuto.html This document] describes the registration process.
