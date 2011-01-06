@@ -1,0 +1,160 @@
+<!-- Copyright 2010 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+
+<html>
+  <head>
+    <title>YouTube Captions Uploader</title>
+    <link rel="shortcut icon" href="/img/favicon.gif">
+    <style type="text/css">@import url(/css/plupload.queue.css);</style>
+    <style type="text/css">@import url(/css/index.css);</style>
+    <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("jquery", "1.4");
+    </script>
+    <script type="text/javascript" src="/js/gears_init.js"></script>
+    <script type="text/javascript" src="/js/plupload.full.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.plupload.queue.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/js/jquery.sprintf.js"></script>
+    <script type="text/javascript" src='/_ah/channel/jsapi'></script>
+    <script type="text/javascript">
+      $(function() {
+        $("#logInDiv").html($.sprintf("<a href='https://www.google.com/accounts/AuthSubRequest?next=%sAuthSubLogin&scope=http://gdata.youtube.com&session=1&secure=0'>Add Account</a>", window.location.href));
+        
+        var cookieAsJSON = null;
+        try {
+          // This ends up being double-escaped...
+          cookieAsJSON = $.parseJSON($.parseJSON($.cookie("AuthSubCookie")));
+        } catch (e) {
+          if (console) {
+            console.log(e);
+          }
+        }
+        
+        if (cookieAsJSON == null) {
+          $("#preLoginInstructionsDiv").show();
+        } else {
+          $("#postLoginInstructionsDiv").show();
+          
+          var optionArray = [];
+          
+          $.each(cookieAsJSON, function(username, authSubToken) {
+            var option = $.sprintf("<option name='%s' value='%s' %s>%s</option>", username, authSubToken, username == $.cookie("CurrentUsername") ? "selected" : "", username);
+            optionArray.push(option);
+
+            if ($.cookie("CurrentUsername") == "") {
+              $.cookie("CurrentUsername", username);
+              $.cookie("CurrentAuthsubToken", authSubToken);
+            }
+          });
+          
+          $("#usernameDiv").html($.sprintf("<label for='username'>Current Account: </label><select id='username'>%s</select>", optionArray.sort().join()));
+          
+          $("#logOutDiv").html("<a href='/AuthSubLogout'>Remove Current Account</a>");
+        
+          $("#username").change(function() {
+            var currentUsername = $("#username option:selected").text();
+            var currentAuthsubToken = $("#username option:selected").attr("value");
+            $.cookie("CurrentUsername", currentUsername);
+            $.cookie("CurrentAuthsubToken", currentAuthsubToken);
+          });
+          
+          // Thanks to Nick Johnson for his excellent blog post illustrating plupload & AppEngine integration:
+          // http://blog.notdot.net/2010/04/Implementing-a-dropbox-service-with-the-Blobstore-API-part-3-Multiple-upload-support         
+          var uploader = $("#uploaderDiv").pluploadQueue({
+            runtimes: "flash,html5,gears,html4",
+            use_query_string: false,
+            multipart: true,
+            flash_swf_url: "/js/plupload.flash.swf",
+            filters: [{title: "Captions files", extensions: "sbv,srt"}],
+          }).pluploadQueue();
+
+          uploader.bind("UploadFile", function(up, file) {
+            $.ajax({
+                url: "/GenerateUploadUrl",
+                async: false,
+                success: function(data) {
+                  up.settings.url = data;
+                }
+            });
+          });
+          
+          uploader.bind("StateChanged", function(up) {
+            if (up.state == plupload.STARTED) {
+              $('#status').show();
+            }
+          });
+          
+          uploader.bind("FileUploaded", function(up, file, info) {
+            $("#status").append($.sprintf("<tr name='%s'><td>%s</td><td name='%s'>Submitting to YouTube...</td></tr>", file.name, file.name, file.name));
+          });
+          
+          $.ajax({
+            url: "/GenerateChannelToken",
+            async: true,
+            success: function(token) {
+              if (token != "") {
+                var channel = new goog.appengine.Channel(token);
+                var socket = channel.open();
+                
+                socket.onmessage = function(message) {
+                  var jsonResponse = $.parseJSON(message.data);
+                  if (jsonResponse.success) {
+                    $($.sprintf("td[name='%s']", jsonResponse.fileName)).html("Success!");
+                  } else {
+                    $($.sprintf("tr[name='%s']", jsonResponse.fileName)).attr("class", "failure");
+                    $($.sprintf("td[name='%s']", jsonResponse.fileName)).html(jsonResponse.error);
+                  }
+                };
+                
+                socket.onerror = function(error) {
+                  if (console) {
+                    console.log($.sprintf("HTTP %d: %s", error.code, error.description));
+                  }
+                };
+              }
+            }
+          });
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <div id="accountDiv">
+      <div id="logInDiv"></div>
+      <div id="usernameDiv"></div>
+      <div id="logOutDiv"></div>
+    </div>
+    <h1>YouTube Captions Uploader</h1>
+    <div id="preLoginInstructionsDiv" style="display: none;">
+      <div>To get started, add a new YouTube account. You can add additional accounts later.</div>
+    </div>
+    <div id="postLoginInstructionsDiv" style="display: none;">
+      <div>Files <strong>must</strong> be named <code>videoId_languageCode[_trackName].srt|sbv</code></div>
+      <div>E.g.: <code>PjLv88-zqkI_en.srt</code>, <code>PjLv88-zqkI_zh-CN_My Track Name.sbv</code></div>
+    </div>
+      <form>
+        <div id="uploaderDiv"></div>
+      </form>
+      
+      <table id="status" style="display: none;">
+        <thead>
+          <tr>
+            <td>File Name</td>
+            <td>YouTube Submission Status</td>
+          </tr>
+        </thead>
+      </table>
+  </body>
+</html>
