@@ -10,6 +10,16 @@ The code is available in this Google Code project, released under the Apache 2.0
 
 The SVN repository contains metadata for an Eclipse project, so if you check out directly into Eclipse (using [http://subclipse.tigris.org/ Subclipse], for example) you should get a fully configured App Engine Eclipse project.
 
+==Registering with App Engine==
+
+The code in this project is written for the Java flavor of App Engine. Any version of the [http://code.google.com/appengine/downloads.html#Google_App_Engine_SDK_for_Java SDK] greater than 1.4.0 should be supported.
+
+The SDK provides a local Java App Engine environment that you can run on your own machine, and the !YouTube Captions Uploader code should work in that environment.
+
+Assuming you want to host the code on a production appspot.com web server, you'll need to create a new App Engine application first, via https://appengine.google.com/
+
+The code in this project uses App Engine's !BlobStoreService, which is only available to App Engine instances that are set up for billing. So while usage of the App Engine instance may or may not actually incur any charges (depending on your traffic volumes), you *MUST* [http://code.google.com/appengine/docs/billing.html set up billing] for your App Engine instance in order for the code to function.
+
 ==Filling in the Blanks==
 
 There are a couple of `REPLACE ME!` placeholders in the code.
