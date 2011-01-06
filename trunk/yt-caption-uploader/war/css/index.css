@@ -1,0 +1,37 @@
+body {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+table#status {
+  border-collapse: collapse;
+  border-spacing: 40px;
+  margin: 8px;
+}
+
+table#status thead td {
+  font-weight: bold;
+  padding: 5px;
+}
+
+table#status td {
+  padding: 5px;
+}
+
+.failure {
+  background-color: #EEEEEE;
+}
+
+#accountDiv {
+  float:right;
+  text-align: right;
+  background-color: #EEEEEE;
+  padding: 5px;
+}
+
+#accountDiv div {
+  margin: 2px;
+}
+
+#postLoginInstructionsDiv {
+  margin-bottom: 10px;
+}

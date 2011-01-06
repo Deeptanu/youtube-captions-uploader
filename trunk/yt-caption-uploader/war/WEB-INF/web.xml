@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns="http://java.sun.com/xml/ns/javaee"
+xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+	<servlet>
+		<servlet-name>GenerateUploadUrl</servlet-name>
+		<servlet-class>com.google.youtube.captions.GenerateUploadUrl</servlet-class>
+	</servlet>
+	<servlet>
+    <servlet-name>AuthSubLogin</servlet-name>
+    <servlet-class>com.google.youtube.captions.AuthSubLogin</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>AuthSubLogout</servlet-name>
+    <servlet-class>com.google.youtube.captions.AuthSubLogout</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>BlobUpload</servlet-name>
+    <servlet-class>com.google.youtube.captions.BlobUpload</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>SubmitCaptionTask</servlet-name>
+    <servlet-class>com.google.youtube.captions.SubmitCaptionTask</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>GenerateChannelToken</servlet-name>
+    <servlet-class>com.google.youtube.captions.GenerateChannelToken</servlet-class>
+  </servlet>
+	<servlet-mapping>
+	<servlet-name>GenerateUploadUrl</servlet-name>
+		<url-pattern>/GenerateUploadUrl</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+    <servlet-name>AuthSubLogin</servlet-name>
+    <url-pattern>/AuthSubLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AuthSubLogout</servlet-name>
+    <url-pattern>/AuthSubLogout</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>BlobUpload</servlet-name>
+    <url-pattern>/BlobUpload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>SubmitCaptionTask</servlet-name>
+    <url-pattern>/SubmitCaptionTask</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>GenerateChannelToken</servlet-name>
+    <url-pattern>/GenerateChannelToken</url-pattern>
+  </servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>
