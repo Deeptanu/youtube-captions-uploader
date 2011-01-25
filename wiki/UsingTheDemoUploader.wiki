@@ -4,26 +4,44 @@
 
 The public demo at yt-captions-uploader.appspot.com is a working example of a caption uploader for YouTube.
 
-To upload captions to a video, you must be the video owner. The uploader uses the filename to set parameters like Title and Language in YouTube.
+To upload captions to a video, you must be the video owner. 
 
-This uploader only works with caption files in YouTube-compatible formats. You cannot use it to align plain transcripts.
+The name of the caption file provides the video ID, and sets parameters like _Title_ and _Language_ in YouTube.
+
+This uploader only works with caption files in srt and sbv formats. You cannot use it to align plain transcripts.
 
 ==Authenticating to YouTube==
+To upload captions, you must first log into YouTube and grant permission to the yt-captions-uploader.
+
   # Open [http://yt-captions-uploader.appspot.com/ yt-captions-uploader] in your browser.
   # In the top right corner, click *Add Account*.
-    * If your Google Account is already signed into YouTube, you'll be directed to the YouTube Authentication page. If this is the YouTube account that the captioned videos belong to, click *Allow Access* to permit yt-captions-uploader to post captions to your videos. Otherwise, log out of YouTube and log in as the owner of the video that you want to upload captions for.
+    * If your Google Account is already signed into YouTube, you'll be directed to the YouTube Authentication page. If this isn't the YouTube account that the captioned videos belong to, log out of YouTube and log in as the owner of the video that you want to upload captions for.
     * If you haven't connected your Google Account and your YouTube account, you'll be redirected to a login page for YouTube. Log in as the owner of the video that you want to upload captions for.
-  # Once authenticated, the browser returns to yt-captions-uploader, where you should now see your account.
+  # On the YouTube Authentication page, click *Allow Access* to permit yt-captions-uploader to post captions to your videos. The browser returns to yt-captions-uploader, where you should now see your YouTube channel name under _Current Account_.
 
 ==Naming Your Caption Files==
+The filename is used to tell the uploader which video, language, and track title to use. 
+
+Use this syntax:
+{{{
+videoID_langID.srt or videoID_langID.sbv 
+}}}
+or, optionally, with a track title:
+{{{
+videoID_langID_title.srt or videoID_langID_title.srt
+}}}
+
+Note that the video ID is an 11-character string, and may contain underscore characters. The language ID is the ISO 639-1 two-letter language code ([http://code.google.com/apis/youtube/2.0/reference.html#Localized_Category_Lists or locale], such as pt-BR)that identifies the desired caption language.
+
+So the file 5q3cwvbwX_c_en.srt would upload as an English caption track for this video (http://www.youtube.com/watch?v=5q3cwvbwX_c). 
+
+If we uploaded it as 5q3cwvbwX_c_en_ASL.srt or 5q3cwvbwX_c_en_ASL.sbv, it would create an English caption track named "ASL" for the same video.
+
+And if the file were a Chinese translation (Simplified Chinese), we would name it 5q3cwvbwX_c_zh-CN.srt or 5q3cwvbwX_c_zh-CN.sbv.
+
 
 ==Uploading Captions==
-The uploader uses the filename to set parameters for uploading the 
+  # Once you've named your files appropriately, click *Add Files* to add them from your computer. The selected files are shown in the upload queue.
+  # When you've done adding files, click *Start upload* to begin adding them to YouTube. When the upload is complete for each file, you'll see status below the upload queue.
 
-
-= Details =
-
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+If you want to add more files, refresh the page to clear the upload queue and start over.
