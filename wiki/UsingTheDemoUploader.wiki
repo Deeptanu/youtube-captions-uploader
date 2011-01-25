@@ -11,11 +11,11 @@ The name of the caption file provides the video ID, and sets parameters like _Ti
 This uploader only works with caption files in srt and sbv formats. You cannot use it to align plain transcripts.
 
 == Authenticating to !YouTube ==
-To upload captions, you must first log into YouTube and grant permission to the yt-captions-uploader.
+To upload captions, you must first log into !YouTube and grant permission to the yt-captions-uploader.
 
   # Open [http://yt-captions-uploader.appspot.com/ yt-captions-uploader] in your browser.
   # In the top right corner, click *Add Account*.
-    * If your Google Account is already signed into !YouTube, you'll be directed to the !YouTube Authentication page. If this isn't the !YouTube account that the captioned videos belong to, log out of YouTube and log in as the owner of the video that you want to upload captions for.
+    * If your Google Account is already signed into !YouTube, you'll be directed to the !YouTube Authentication page. If this isn't the !YouTube account that the captioned videos belong to, log out of !YouTube and log in as the owner of the video that you want to upload captions for.
     * If you haven't connected your Google Account and your !YouTube account, you'll be redirected to a login page for !YouTube. Log in as the owner of the video that you want to upload captions for.
   # On the !YouTube Authentication page, click *Allow Access* to permit yt-captions-uploader to post captions to your videos. The browser returns to yt-captions-uploader, where you should now see your !YouTube channel name under _Current Account_.
 
