@@ -2,7 +2,7 @@
 
 = How to use yt-captions-uploader =
 
-The public demo at yt-captions-uploader.appspot.com is a working example of a caption uploader for !YouTube.
+The public demo at [http://yt-captions-uploader.appspot.com/ yt-captions-uploader.appspot.com] is a working example of a caption uploader for !YouTube.
 
 To upload captions to a video, you must be the video owner. 
 
