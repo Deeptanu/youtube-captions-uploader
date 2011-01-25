@@ -1,0 +1,29 @@
+#summary How to use the public demo at yt-captions-uploader.appspot.com
+
+= How to use yt-captions-uploader =
+
+The public demo at yt-captions-uploader.appspot.com is a working example of a caption uploader for YouTube.
+
+To upload captions to a video, you must be the video owner. The uploader uses the filename to set parameters like Title and Language in YouTube.
+
+This uploader only works with caption files in YouTube-compatible formats. You cannot use it to align plain transcripts.
+
+==Authenticating to YouTube==
+  # Open [http://yt-captions-uploader.appspot.com/ yt-captions-uploader] in your browser.
+  # In the top right corner, click *Add Account*.
+    * If your Google Account is already signed into YouTube, you'll be directed to the YouTube Authentication page. If this is the YouTube account that the captioned videos belong to, click *Allow Access* to permit yt-captions-uploader to post captions to your videos. Otherwise, log out of YouTube and log in as the owner of the video that you want to upload captions for.
+    * If you haven't connected your Google Account and your YouTube account, you'll be redirected to a login page for YouTube. Log in as the owner of the video that you want to upload captions for.
+  # Once authenticated, the browser returns to yt-captions-uploader, where you should now see your account.
+
+==Naming Your Caption Files==
+
+==Uploading Captions==
+The uploader uses the filename to set parameters for uploading the 
+
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
