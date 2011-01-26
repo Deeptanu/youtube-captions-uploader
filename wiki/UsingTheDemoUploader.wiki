@@ -18,7 +18,7 @@ To upload captions, you must first log into !YouTube and grant permission to the
     * If your Google Account is already signed into !YouTube, you'll be directed to the !YouTube Authentication page. If this isn't the !YouTube account that the captioned videos belong to, log out of !YouTube and log in as the owner of the video that you want to upload captions for.
     * If you haven't connected your Google Account and your !YouTube account, you'll be redirected to a login page for !YouTube. Log in as the owner of the video that you want to upload captions for.
   # On the !YouTube Authentication page, click *Allow Access* to permit yt-captions-uploader to post captions to your videos. The browser returns to yt-captions-uploader, where you should now see your !YouTube channel name under _Current Account_.
-  # Optionally log in to additional accounts you have access to, and switch accounts using the popup menu.
+  # Optionally add additional accounts you have access to, and switch accounts using the *Current Account* popup menu.
 
 !YouTube access credentials are stored in a local browser cookie following authentication, and are not exposed for any other users of the web application. You can invalidate the local credentials by using the *Remove Current Account* link.
 
