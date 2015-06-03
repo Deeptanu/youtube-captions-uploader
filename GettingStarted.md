@@ -1,0 +1,37 @@
+# Getting Started with the YouTube Captions Uploader Code #
+
+If you'd like to use the YouTube Captions Uploader without having to deploy your own App Engine instance, a public example is running at http://yt-captions-uploader.appspot.com/
+
+If you're a developer who wants to run your own instance, perhaps with code modifications, then continue reading!
+
+## Checking Out the Code ##
+
+The code is available in this Google Code project, released under the Apache 2.0 license. Checkout instructions can be found at http://code.google.com/p/youtube-captions-uploader/source/checkout
+
+The SVN repository contains metadata for an Eclipse project, so if you check out directly into Eclipse (using [Subclipse](http://subclipse.tigris.org/), for example) you should get a fully configured App Engine Eclipse project.
+
+## Registering with App Engine ##
+
+The code in this project is written for the Java flavor of App Engine. Any version of the [SDK](http://code.google.com/appengine/downloads.html#Google_App_Engine_SDK_for_Java) greater than 1.4.0 should be supported.
+
+The SDK provides a local Java App Engine environment that you can run on your own machine, and the YouTube Captions Uploader code should work in that environment.
+
+Assuming you want to host the code on a production appspot.com web server, you'll need to create a new App Engine application first, via https://appengine.google.com/
+
+The code in this project uses App Engine's BlobStoreService, which is only available to App Engine instances that are set up for billing. So while usage of the App Engine instance may or may not actually incur any charges (depending on your traffic volumes), you **MUST** [set up billing](http://code.google.com/appengine/docs/billing.html) for your App Engine instance in order for the code to function.
+
+## Filling in the Blanks ##
+
+There are a couple of `REPLACE ME!` placeholders in the code.
+
+[One](http://code.google.com/p/youtube-captions-uploader/source/browse/trunk/yt-caption-uploader/war/WEB-INF/appengine-web.xml?r=5#3) is in the `war/WEB-INF/appengine-web.xml` file; you need to fill in the name of your registered App Engine instance prior to App Engine deployment.
+
+The [other](http://code.google.com/p/youtube-captions-uploader/source/browse/trunk/yt-caption-uploader/src/com/google/youtube/captions/Util.java?r=5#29) is in the `src/com/google/youtube/captions/Util.java` file; you need to fill in a YouTube API developer key, which you can obtain [here](http://code.google.com/apis/youtube/dashboard/gwt/).
+
+Once those two changes are made, you're ready to deploy to App Engine.
+
+## You're Done! ##
+
+After deployment, you should be able to access your instance.
+
+An optional final step is to verify ownership of the site with Google, which will lead to a less-dire warning message when users login to their YouTube accounts via AuthSub. [This document](http://code.google.com/apis/accounts/docs/RegistrationForWebAppsAuto.html) describes the registration process.
